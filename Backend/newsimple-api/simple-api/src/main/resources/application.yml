@@ -1,0 +1,14 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    generate-ddl: false
+    open-in-view: true
+  datasource:
+    url: "jdbc:postgresql://172.18.0.2:5432/db"
+    username: root
+    password: root
+    driver-class-name: org.postgresql.Driver
