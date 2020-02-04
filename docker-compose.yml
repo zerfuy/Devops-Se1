@@ -1,0 +1,37 @@
+version: '3.7'
+services:
+  backend:
+    build:
+      context: ./Backend/newsimple-api/simple-api
+      dockerfile: Dockerfile
+    ports:
+      - "8002:8080"
+    networks:
+      - "mynet"
+    depends_on:
+      - database
+
+
+  database:
+    build:
+      context: ./Database
+      dockerfile: Dockerfile
+    ports:
+      - "8001:5432"
+    networks:
+      - "mynet"
+
+  httpd:
+    build:
+      context: ./httpdserver
+      dockerfile: Dockerfile
+    ports:
+      - "8003:80"
+    networks:
+      - "mynet"
+    depends_on:
+      - backend
+
+networks:
+  mynet:
+    name: mynet
